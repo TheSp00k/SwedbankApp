@@ -1,14 +1,37 @@
 <head>
-  <title>SwedbankApp</title>
+    <title>SwedbankApp</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+{{> hello}}
+{{> quiz}}
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+    <div></div>
+    <div class="container">
+        <header class="jumbotron">
+            <h1>A Warm Welcome!</h1>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non
+                incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam
+                repellat.</p>
+
+            <p><a class="btn btn-primary btn-large">Call to action!</a>
+            </p>
+        </header>
+    </div>
+</template>
+
+<template name="quiz">
+        <div class="form-container">
+            <div class="logo-container">
+                <div class="logo"></div>
+            </div>
+            <form class="quiz-form">
+                <legend>aeqeqeqwe</legend>
+                <label for="test">eqweqwe</label>
+                <input id="test" type="radio"/>
+            </form>
+        </div>
 </template>

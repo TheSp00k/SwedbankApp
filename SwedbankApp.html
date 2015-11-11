@@ -4,17 +4,19 @@
 
 <body>
 {{> hello}}
-<div class="main-content">
+
+{{> points_wrapper}}
+<div class="container main-content">
     <div class="quiz-container">
         {{> quiz}}
         {{> summary}}
+        <div class="clearfix"></div>
     </div>
 </div>
 </body>
 
 <template name="hello">
-    <div></div>
-    <div class="container">
+    <div id="zzz" class="container">
         <header class="jumbotron">
             <h1>A Warm Welcome!</h1>
 
@@ -22,17 +24,27 @@
                 incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam
                 repellat.</p>
 
-            <p><a class="btn btn-primary btn-large">Call to action!</a>
+            <p><a id="button" class="btn btn-primary btn-large">Call to action!</a>
             </p>
         </header>
     </div>
 </template>
 
+<template name="points_wrapper">
+    <div class="points-wrapper">
+        <div class="points-container">
+            <div id="slide-trigger" class="points-pic-container">
+                <div class="points"></div>
+            </div>
+            <div class="points-explain-container">
+                qeqeqeqeqeqe
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="quiz">
     <div class="form-container col-lg-6">
-        <div class="logo-container">
-            <div class="logo"></div>
-        </div>
         <form class="quiz-form">
             <legend>aeqeqeqwe</legend>
             <label for="test">eqweqwe</label>
@@ -42,14 +54,7 @@
 </template>
 
 <template name="summary">
-    <div class="form-container col-lg-6">
-        <div class="logo-container">
-            <div class="logo"></div>
-        </div>
-        <form class="quiz-form">
-            <legend>aeqeqeqwe</legend>
-            <label for="test2">eqweqwe</label>
-            <input id="test2" type="radio"/>
-        </form>
+    <div class="summary col-lg-6">
+
     </div>
 </template>

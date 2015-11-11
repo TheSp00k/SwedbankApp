@@ -4,7 +4,12 @@
 
 <body>
 {{> hello}}
-{{> quiz}}
+<div class="main-content">
+    <div class="quiz-container">
+        {{> quiz}}
+        {{> summary}}
+    </div>
+</div>
 </body>
 
 <template name="hello">
@@ -24,14 +29,27 @@
 </template>
 
 <template name="quiz">
-        <div class="form-container">
-            <div class="logo-container">
-                <div class="logo"></div>
-            </div>
-            <form class="quiz-form">
-                <legend>aeqeqeqwe</legend>
-                <label for="test">eqweqwe</label>
-                <input id="test" type="radio"/>
-            </form>
+    <div class="form-container col-lg-6">
+        <div class="logo-container">
+            <div class="logo"></div>
         </div>
+        <form class="quiz-form">
+            <legend>aeqeqeqwe</legend>
+            <label for="test">eqweqwe</label>
+            <input id="test" type="radio"/>
+        </form>
+    </div>
+</template>
+
+<template name="summary">
+    <div class="form-container col-lg-6">
+        <div class="logo-container">
+            <div class="logo"></div>
+        </div>
+        <form class="quiz-form">
+            <legend>aeqeqeqwe</legend>
+            <label for="test2">eqweqwe</label>
+            <input id="test2" type="radio"/>
+        </form>
+    </div>
 </template>

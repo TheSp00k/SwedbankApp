@@ -1,10 +1,15 @@
 <template name="newQuestion">
-    <div class="form-container col-lg-6">
-        {{> quickForm collection="Quiz" id="submitQuizForm" type="method" meteormethod="submitQuestion"}}
-        {{#autoForm collection="Quiz" id="insertPostForm" type="update"}}
+    <div class="form-container">
+
+        {{#autoForm collection="Quiz" doc=this id="insertPostForm" type="method" meteormethod="submitQuestion"}}
+            <div class="headline">
+                <h2>{{legend}}aa</h2>
+                {{console.log }}
+            </div>
         <fieldset>
             {{> afQuickField name='title'}}
             {{> afQuickField name='body' rows=6}}
+            {{> afQuickField name='_id' type='hidden'}}
         </fieldset>
         <button type="submit" class="btn btn-primary">Insert</button>
         {{/autoForm}}

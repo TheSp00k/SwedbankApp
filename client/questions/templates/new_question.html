@@ -6,12 +6,12 @@
                 <h2>{{legend}}aa</h2>
                 {{console.log }}
             </div>
-        <fieldset>
-            {{> afQuickField name='title'}}
-            {{> afQuickField name='body' rows=6}}
-            {{> afQuickField name='_id' type='hidden'}}
-        </fieldset>
-        <button type="submit" class="btn btn-primary">Insert</button>
+            <fieldset>
+                {{> afQuickField name='title'}}
+                {{> afQuickField name='body' rows=6}}
+                {{> afQuickField name='_id' type='hidden'}}
+            </fieldset>
+            <button id="formSubmit" type="submit" class="btn btn-primary">Insert</button>
         {{/autoForm}}
     </div>
 </template>

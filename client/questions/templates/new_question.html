@@ -1,9 +1,9 @@
 <template name="newQuestion">
     <div class="form-container">
 
-        {{#autoForm collection="Quiz" doc=this id="insertPostForm" type="method" meteormethod="submitQuestion"}}
+        {{#autoForm schema="questionForm" doc=this id="insertPostForm" type="method" meteormethod="submitQuestion"}}
             <div class="headline">
-                <h2>{{legend}}azza</h2>
+                <h2>azza</h2>
             </div>
             <fieldset>
                 {{> afQuickField name='title'}}

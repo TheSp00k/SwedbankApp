@@ -3,15 +3,14 @@
 
         {{#autoForm collection="Quiz" doc=this id="insertPostForm" type="method" meteormethod="submitQuestion"}}
             <div class="headline">
-                <h2>{{legend}}aa</h2>
-                {{console.log }}
+                <h2>{{legend}}azza</h2>
             </div>
             <fieldset>
                 {{> afQuickField name='title'}}
                 {{> afQuickField name='body' rows=6}}
                 {{> afQuickField name='_id' type='hidden'}}
             </fieldset>
-            <button id="formSubmit" type="submit" class="btn btn-primary">Insert</button>
+            <input id="formSubmit" type="submit" class="btn btn-primary" value="Insert"/>
         {{/autoForm}}
     </div>
 </template>

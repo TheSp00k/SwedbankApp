@@ -26,3 +26,4 @@ sacha:spin
 nemo64:bootstrap
 aldeed:console-helpers
 aldeed:simple-schema
+forwarder:autoform-wizard

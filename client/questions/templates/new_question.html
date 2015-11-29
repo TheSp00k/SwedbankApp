@@ -1,33 +1,6 @@
-<!--<template name="newQuestion">-->
-    <!--<div class="form-container">-->
-
-        <!--{{#autoForm schema="questionForm" doc=this id="insertPostForm" type="method" meteormethod="submitQuestion"}}-->
-            <!--<div class="headline">-->
-                <!--<h2>azza</h2>-->
-            <!--</div>-->
-            <!--<fieldset>-->
-                <!--{{> afQuickField name='title'}}-->
-                <!--{{> afQuickField name='body' rows=6}}-->
-                <!--{{> afQuickField name='_id' type='hidden'}}-->
-            <!--</fieldset>-->
-            <!--<input id="formSubmit" type="submit" class="btn btn-primary" value="Insert"/>-->
-        <!--{{/autoForm}}-->
-    <!--</div>-->
-<!--</template>-->
-
-
 <template name="question">
-    {{#autoForm schema=getQuizFormSchema id="quizForm" type="method" meteormethod="questionAnswered"}}
-    <fieldset>
-        {{> afFieldInput name="questionNr"}}
-        {{> afFieldInput name="question"}}
-        {{> afFormGroup name="answer"}}
-        <div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-default">Reset</button>
-        </div>
-    </fieldset>
-    {{/autoForm}}
+
+    {{> wizard id="quizForm" steps=steps nextButton=nextButton backButton='Atgal'}}
 
     <p>
         // How To Show Echo Text HERE??

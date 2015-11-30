@@ -2,10 +2,21 @@
 
 
     {{#if pointsUser}}
-        {{> wizard steps=pointsSteps stepsTemplate=false nextButton='Toliau' backButton='Atgal'}}
+        {{#wizard id='pointsForm' steps=pointsSteps stepsTemplate=false}}
+            <div class="headline">
+                <h2>{{getFormHeader}}</h2>
+                <fieldset>
+                    {{> afQuickField name='answers'}}
+                </fieldset>
+                {{>wizardButtons}}
+                <!--<button type="button" class="wizard-back-button">Atgal</button>-->
+                <!--<button type="submit" class="wizard-next-button">Toliau</button>-->
+                <!--<input id="formSubmit" type="submit" class="btn btn-primary" value="Insert"/>-->
+            </div>
+        {{/wizard}}
     {{else}}
         {{#if noPointsUser}}
-            {{> wizard steps=noPointsSteps nextButton='Toliau' backButton='Atgal'}}
+            {{> wizard id='noPointsForm' steps=noPointsSteps stepsTemplate=false nextButton='Toliau' backButton='Atgal'}}
         {{else}}
             {{#autoForm schema="Schema.baseQuestion" doc=this id="insertPostForm" type="method" meteormethod="firstQuestionAnswered"}}
                 <div class="headline">

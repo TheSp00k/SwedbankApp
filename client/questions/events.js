@@ -14,5 +14,9 @@ Template.question.events({
             user_type = "noPointsUser";
         }
         Session.set('user_type', user_type);
+    },
+    'submit': function(event) {
+        console.log(event.target.id);
+        Session.set('formId', event.target.id);
     }
 });

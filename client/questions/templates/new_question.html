@@ -1,6 +1,23 @@
 <template name="question">
 
-    {{> wizard id="quizForm" steps=steps nextButton=nextButton backButton='Atgal'}}
+
+    {{#if pointsUser}}
+        {{> wizard steps=pointsSteps stepsTemplate=false nextButton='Toliau' backButton='Atgal'}}
+    {{else}}
+        {{#if noPointsUser}}
+            {{> wizard steps=noPointsSteps nextButton='Toliau' backButton='Atgal'}}
+        {{else}}
+            {{#autoForm schema="Schema.baseQuestion" doc=this id="insertPostForm" type="method" meteormethod="firstQuestionAnswered"}}
+                <div class="headline">
+                    <h2>{{getFormHeader}}</h2>
+                </div>
+                <fieldset>
+                    {{> afQuickField name='answers'}}
+                </fieldset>
+                <input id="formSubmit" type="submit" class="btn btn-primary" value="Insert"/>
+            {{/autoForm}}
+        {{/if}}
+    {{/if}}
 
     <p>
         // How To Show Echo Text HERE??

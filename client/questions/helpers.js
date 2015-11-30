@@ -1,68 +1,65 @@
 Template.question.helpers({
-    getQuizFormSchema: function () {
-        return Schema.baseQuestion;
+    getFormHeader: function () {
+        return Schema.baseQuestion.schema('answers').label;
     },
     getVarFromSession: function () {
         return Session.get('answer');
     },
+
+    pointsUser: function () {
+        return Session.get('user_type') === 'pointsUser';
+    },
+    noPointsUser: function () {
+        return Session.get('user_type') === 'noPointsUser';
+    },
     getQuestionsCount: function () {
         //return Session.get('questions');
     },
-    nextButton: "Toliau",
-    steps: function () {
+    pointsSteps: function() {
         return [
             {
-                id: 'base',
-                //title: 'Information',
-                schema: Schema.baseQuestion,
-                data: function(data) {
-                    console.log('qqqq');
-                }
-                //onSubmit: function (data) {
-                //    if (data.answer == 1) {
-                //        user_type = 'points_user';
-                //    } else {
-                //        user_type = 'non-points_user';
-                //    }
-                //    Session.set('user_type', user_type);
-                //}
-                //onSubmit: function(data, wizard) {
-                //    console.log(wizard);
-                //    if (data.answer == 1) {
-                //        user_type = 'points_user';
-                //    } else {
-                //        user_type = 'non-points_user';
-                //    }
-                //    Session.set('user_type', user_type);
-                //}
+                id: 'question1',
+                schema: Schema.points.question1
             },
             {
-                id: 'question1',
-                //title: 'Confirm',
-                //schema: Schema.question1,
-                schema: function() {
-                    console.log('asdsadas');
-                    console.log(Session.get('user_type'));
-                    if (Session.get('user_type') == 'points_user') {
-                        return Schema.question1;
-                    } else {
-                        return Schema.question2;
-                    }
-                },
-                onSubmit: function (data, wizard) {
-                    if (data.answer == 1) {
-                        user_type = 'points_user';
-                    } else {
-                        user_type = 'non-points_user';
-                    }
-                    Session.set('user_type', user_type);
+                id: 'question2',
+                schema: Schema.points.question2
+            },
+            {
+                id: 'question3',
+                schema: Schema.points.question3
+            },
+            {
+                id: 'question4',
+                schema: Schema.points.question4
+            },
+            {
+                id: 'question5',
+                schema: Schema.points.question5,
+                onSubmit: function(data) {
+                    console.log(data);
                 }
             }
         ]
     },
-    nextButton: {
-        label: 'qweqwe',
-        id: 'qqq'
+    noPointsSteps: function () {
+        return [
+            {
+                id: 'question1',
+                schema: Schema.noPoints.question1
+            },
+            {
+                id: 'question2',
+                schema: Schema.noPoints.question2
+            },
+            {
+                id: 'question3',
+                schema: Schema.noPoints.question3,
+                onSubmit: function(data) {
+                    console.log(data);
+                }
+            }
+        ]
     }
 });
 

@@ -1,26 +1,14 @@
 <template name="question">
-
-
     {{#if pointsUser}}
-        {{#wizard id='pointsForm' steps=pointsSteps stepsTemplate=false}}
-            <div class="headline">
-                <h2>{{getFormHeader}}</h2>
-                <fieldset>
-                    {{> afQuickField name='answers'}}
-                </fieldset>
-                {{>wizardButtons}}
-                <!--<button type="button" class="wizard-back-button">Atgal</button>-->
-                <!--<button type="submit" class="wizard-next-button">Toliau</button>-->
-                <!--<input id="formSubmit" type="submit" class="btn btn-primary" value="Insert"/>-->
-            </div>
-        {{/wizard}}
+        {{>wizard id='pointsForm' doc=step.data steps=pointsSteps stepsTemplate=false}}
     {{else}}
         {{#if noPointsUser}}
-            {{> wizard id='noPointsForm' steps=noPointsSteps stepsTemplate=false nextButton='Toliau' backButton='Atgal'}}
+            {{> wizard id='noPointsForm' doc=step.data steps=noPointsSteps stepsTemplate=false nextButton='Toliau' backButton='Atgal'}}
         {{else}}
-            {{#autoForm schema="Schema.baseQuestion" doc=this id="insertPostForm" type="method" meteormethod="firstQuestionAnswered"}}
+            {{#autoForm schema="Schema.baseQuestion" doc=this id="baseQuestion" type="method" meteormethod="firstQuestionAnswered"}}
                 <div class="headline">
-                    <h2>{{getFormHeader}}</h2>
+                    {{console.log Schema}}
+                    <h2>{{getBaseFormHeader}}</h2>
                 </div>
                 <fieldset>
                     {{> afQuickField name='answers'}}
@@ -35,4 +23,17 @@
         Text = ???????????????????
         {{getVarFromSession}}
     </p>
+</template>
+
+<template name="questionForm">
+    {{console.log step.data}}
+    {{#autoForm schema=this.step.schema doc=step.data id=this.step.formId}}
+    <div class="headline">
+        <h2>{{this.step.title}}</h2>
+    </div>
+    <fieldset>
+        {{> afQuickField name='answers'}}
+    </fieldset>
+    {{>wizardButtons}}
+    {{/autoForm}}
 </template>

@@ -4,6 +4,7 @@ Schema.baseQuestion = new SimpleSchema({
         type: String,
         label: "Ar esate e-taškų kaupimo dalyvis?",
         autoform: {
+            label: false,
             type: "select-radio",
             options: function () {
                 return [
@@ -42,13 +43,13 @@ Schema.baseQuestion = new SimpleSchema({
     }
 });
 
-Schema.points = {
+Schema.pointsUser = {
     question1: new SimpleSchema({
         answers: {
             type: [String],
-            label: "Kokiems prizams išleidžiate e-taškus?",
             autoform: {
                 type: "select-checkbox",
+                label: false,
                 options: function () {
                     return [
                         {
@@ -91,9 +92,9 @@ Schema.points = {
     question2: new SimpleSchema({
         answers: {
             type: String,
-            label: "Kiek laiko naudojatės e-taškų programa?",
             autoform: {
                 type: "select-radio",
+                label: false,
                 options: function () {
                     return [
                         {
@@ -124,9 +125,9 @@ Schema.points = {
     question3: new SimpleSchema({
         answers: {
             type: String,
-            label: "Kaip sužinojote apie e-taškus?",
             autoform: {
                 type: "select-radio",
+                label: false,
                 options: function () {
                     return [
                         {
@@ -157,18 +158,23 @@ Schema.points = {
     question4: new SimpleSchema({
         answers: {
             type: String,
-            label: "Kokios priežastys įtakojo pradėti prisijungti prie e-taškų kaupimo programos?"
+            autoform: {
+                label: false
+            }
+
         }
     }),
     question5: new SimpleSchema({
         answers: {
             type: String,
-            label: "Kokių prizų norėtumėte už e-taškus?"
+            autoform: {
+                label: false
+            }
         }
     })
 };
 
-Schema.noPoints = {
+Schema.noPointsUser = {
     question1: new SimpleSchema({
         answers: {
             type: String,

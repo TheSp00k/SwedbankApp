@@ -1,13 +1,13 @@
+Template.question.rendered = function() {
+    if(!this._rendered) {
+        this._rendered = true;
+        Session.set('formId', 'baseQuestion');
+        Session.set('baseQuestion', Schema.baseQuestion.schema('answers').label);
+
+    }
+};
 Template.question.events({
-    //'submit': function(event) {
-    //    event.preventDefault();
-    //    console.log(event.target);
-    //    //Session.set('nextSchema', nextSchema);
-    //    //Session.set('quiz', questions);
-    //
-    //},
-    'submit #insertPostForm': function(event) {
-        console.log(event.target.answers.value);
+    'submit #baseQuestion': function(event) {
         if (event.target.answers.value == 1) {
             user_type = "pointsUser";
         } else if(event.target.answers.value == 0) {
@@ -16,7 +16,6 @@ Template.question.events({
         Session.set('user_type', user_type);
     },
     'submit': function(event) {
-        console.log(event.target.id);
         Session.set('formId', event.target.id);
     }
 });

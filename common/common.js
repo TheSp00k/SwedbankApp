@@ -1,6 +1,6 @@
 Schema = {};
 Schema.baseQuestion = new SimpleSchema({
-    answers: {
+    baseAnswer: {
         type: String,
         autoform: {
             type: "select-radio",
@@ -24,7 +24,7 @@ Schema.baseQuestion = new SimpleSchema({
 
 Schema.pointsUser = {
     question1: new SimpleSchema({
-        answers: {
+        answer1: {
             type: [String],
             autoform: {
                 type: "select-checkbox",
@@ -34,35 +34,35 @@ Schema.pointsUser = {
                     return [
                         {
                             label: "Periodiniai mokėjimai su nuolaida",
-                            value: 1
+                            value: "Periodiniai mokėjimai su nuolaida"
                         },
                         {
                             label: "SMS Mobiliajame banke",
-                            value: 2
+                            value: "SMS Mobiliajame banke"
                         },
                         {
                             label: "Mokėjimai į kitus bankus su nuolaida",
-                            value: 3
+                            value: "Mokėjimai į kitus bankus su nuolaida"
                         },
                         {
                             label: "Mokėjimai banko viduje su nuolaida",
-                            value: 4
+                            value: "Mokėjimai banko viduje su nuolaida"
                         },
                         {
                             label: "Debeto kortelės aptarnavimas",
-                            value: 5
+                            value: "Debeto kortelės aptarnavimas"
                         },
                         {
                             label: "Nuolaida 'Senjorų pramogoms' mokesčiui",
-                            value: 6
+                            value: "Nuolaida 'Senjorų pramogoms' mokesčiui"
                         },
                         {
                             label: "Klasikinės kredito kortelės aptarnavimas",
-                            value: 7
+                            value: "Klasikinės kredito kortelės aptarnavimas"
                         },
                         {
                             label: "Kita",
-                            value: 8
+                            value: "Kita"
                         }
                     ];
                 }
@@ -70,7 +70,7 @@ Schema.pointsUser = {
         }
     }),
     question2: new SimpleSchema({
-        answers: {
+        answer2: {
             type: String,
             autoform: {
                 type: "select-radio",
@@ -80,23 +80,23 @@ Schema.pointsUser = {
                     return [
                         {
                             label: "Iki 1 mėnesio",
-                            value: 1
+                            value: "Iki 1 mėnesio"
                         },
                         {
                             label: "1-3 mėnesius",
-                            value: 2
+                            value: "1-3 mėnesius"
                         },
                         {
                             label: "3-6 mėnesius",
-                            value: 3
+                            value: "3-6 mėnesius"
                         },
                         {
                             label: "6-12 mėnesių",
-                            value: 4
+                            value: "6-12 mėnesių"
                         },
                         {
                             label: "Metus ir daugiau",
-                            value: 5
+                            value: "Metus ir daugiau"
                         }
                     ];
                 }
@@ -104,7 +104,7 @@ Schema.pointsUser = {
         }
     }),
     question3: new SimpleSchema({
-        answers: {
+        answer3: {
             type: String,
             autoform: {
                 type: "select-radio",
@@ -114,23 +114,23 @@ Schema.pointsUser = {
                     return [
                         {
                             label: "Radau socialiniame tinkle",
-                            value: 1
+                            value: "Radau socialiniame tinkle"
                         },
                         {
                             label: "Parodė draugas",
-                            value: 2
+                            value: "Parodė draugas"
                         },
                         {
                             label: "Parodė šeimos narys",
-                            value: 3
+                            value: "Parodė šeimos narys"
                         },
                         {
                             label: "Radau swedbank svetainėje",
-                            value: 4
+                            value: "Radau swedbank svetainėje"
                         },
                         {
                             label: "Kita",
-                            value: 5
+                            value: "Kita"
                         }
                     ];
                 }
@@ -138,7 +138,7 @@ Schema.pointsUser = {
         }
     }),
     question4: new SimpleSchema({
-        answers: {
+        answer4: {
             type: String,
             autoform: {
                 question: "Kokios priežastys įtakojo prisijungti prie e-taškų kaupimo programos?",
@@ -147,7 +147,7 @@ Schema.pointsUser = {
         }
     }),
     question5: new SimpleSchema({
-        answers: {
+        answer5: {
             type: String,
             autoform: {
                 question: "Kokių prizų norėtumėte už e-taškus?",
@@ -159,7 +159,7 @@ Schema.pointsUser = {
 
 Schema.noPointsUser = {
     question1: new SimpleSchema({
-        answers: {
+        answer1: {
             type: String,
             autoform: {
                 label: false,
@@ -169,23 +169,23 @@ Schema.noPointsUser = {
                     return [
                         {
                             label: "Nežinau kas tai yra",
-                            value: 1
+                            value: "Nežinau kas tai yra"
                         },
                         {
                             label: "Nežinau kaip užsiregistruoti",
-                            value: 2
+                            value: "Nežinau kaip užsiregistruoti"
                         },
                         {
                             label: "Neturiu el. bankininkystės",
-                            value: 3
+                            value: "Neturiu el. bankininkystės"
                         },
                         {
                             label: "Netenkina prizai",
-                            value: 4
+                            value: "Netenkina prizai"
                         },
                         {
                             label: "Kita",
-                            value: 5
+                            value: "Kita"
                         }
                     ];
                 }
@@ -194,7 +194,7 @@ Schema.noPointsUser = {
 
     }),
     question2: new SimpleSchema({
-        answers: {
+        answer2: {
             type: String,
             autoform: {
                 label: false,
@@ -203,7 +203,7 @@ Schema.noPointsUser = {
         }
     }),
     question3: new SimpleSchema({
-        answers: {
+        answer3: {
             type: String,
             autoform: {
                 label: false,
@@ -213,11 +213,11 @@ Schema.noPointsUser = {
                     return [
                         {
                             label: "Taip",
-                            value: 1
+                            value: "Taip"
                         },
                         {
                             label: "Ne",
-                            value: 0
+                            value: "Ne"
                         }
                     ];
                 }
@@ -225,7 +225,7 @@ Schema.noPointsUser = {
         }
     }),
     question4: new SimpleSchema({
-        answers: {
+        answer4: {
             type: String,
             autoform: {
                 label: false,
@@ -235,11 +235,11 @@ Schema.noPointsUser = {
                     return [
                         {
                             label: "Taip",
-                            value: 1
+                            value: "Taip"
                         },
                         {
                             label: "Ne",
-                            value: 0
+                            value: "Ne"
                         }
                     ];
                 }
@@ -247,7 +247,7 @@ Schema.noPointsUser = {
         }
     }),
     question5: new SimpleSchema({
-        answers: {
+        answer5: {
             type: String,
             autoform: {
                 label: false,
@@ -257,11 +257,11 @@ Schema.noPointsUser = {
                     return [
                         {
                             label: "Taip",
-                            value: 1
+                            value: "Taip"
                         },
                         {
                             label: "Ne",
-                            value: 0
+                            value: "Ne"
                         }
                     ];
                 }
@@ -269,5 +269,9 @@ Schema.noPointsUser = {
         }
     })
 };
+
+SimpleSchema.messages({
+    required: "Jūs neatsakėte į klausimą"
+});
 
 //https://github.com/forwarder/meteor-wizard

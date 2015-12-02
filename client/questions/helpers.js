@@ -2,8 +2,9 @@ Template.question.rendered = function() {
     if(!this._rendered) {
         this._rendered = true;
         Session.set('formId', 'baseQuestion');
+        Session.set('quiz', []);
+        Session.set('questions', []);
         Session.set('user_type', 'pointsUser');
-        console.log(Session.get('user_type'));
     }
 };
 
@@ -17,6 +18,9 @@ Template.quiz_navigation.helpers({
 Template.questionForm.helpers({
     getFormId: function () {
         return Session.get('formId');
+    },
+    getAnswer: function () {
+        return this.step.schema._schemaKeys[0];
     }
 });
 
@@ -24,34 +28,15 @@ Template.question.helpers({
     getFormId: function () {
         return Session.get('formId');
     },
-    getBaseFormHeader: function () {
-        return Session.get('baseQuestion');
-    },
-    getFormHeader: function () {
-        var formId = Session.get('formId');
-        var user_type = Session.get('user_type');
-        return Schema[user_type][formId].schema('answers').label;
-    },
-    getVarFromSession: function () {
-        return Session.get('answer');
-    },
 
-    pointsUser: function () {
-        return Session.get('user_type') === 'pointsUser';
-    },
-    noPointsUser: function () {
-        return Session.get('user_type') === 'noPointsUser';
-    },
-    getQuestionsCount: function () {
-        //return Session.get('questions');
-    },
     steps: function () {
         return [
             {
                 id: 'baseQuestion',
                 formId: 'baseQuestion',
+                formField: 'baseAnswer',
                 title: function () {
-                    return Schema.baseQuestion.schema('answers').autoform.question
+                    return Schema.baseQuestion.schema('baseAnswer').autoform.question
                 },
                 template: 'questionForm',
                 schema: Schema.baseQuestion
@@ -59,23 +44,24 @@ Template.question.helpers({
             {
                 id: 'question1',
                 formId: 'question1',
+                formField: 'answer1',
                 title: function () {
                     user_type = Session.get('user_type');
-                    return Schema[user_type].question1.schema('answers').autoform.question
+                    return Schema[user_type].question1.schema('answer1').autoform.question
                 },
                 template: 'questionForm',
                 schema: function () {
                     user_type = Session.get('user_type');
-                    console.log(user_type);
                     return Schema[user_type].question1;
                 }
             },
             {
                 id: 'question2',
                 formId: 'question2',
+                formField: 'answer2',
                 title: function () {
                     user_type = Session.get('user_type');
-                    return Schema[user_type].question2.schema('answers').autoform.question
+                    return Schema[user_type].question2.schema('answer2').autoform.question
                 },
                 template: 'questionForm',
                 schema: function () {
@@ -86,9 +72,10 @@ Template.question.helpers({
             {
                 id: 'question3',
                 formId: 'question3',
+                formField: 'answer3',
                 title: function () {
                     user_type = Session.get('user_type');
-                    return Schema[user_type].question3.schema('answers').autoform.question
+                    return Schema[user_type].question3.schema('answer3').autoform.question
                 },
                 template: 'questionForm',
                 schema: function () {
@@ -99,9 +86,10 @@ Template.question.helpers({
             {
                 id: 'question4',
                 formId: 'question4',
+                formField: 'answer4',
                 title: function () {
                     user_type = Session.get('user_type');
-                    return Schema[user_type].question4.schema('answers').autoform.question
+                    return Schema[user_type].question4.schema('answer4').autoform.question
                 },
                 template: 'questionForm',
                 schema: function () {
@@ -112,9 +100,10 @@ Template.question.helpers({
             {
                 id: 'question5',
                 formId: 'question5',
+                formField: 'answer5',
                 title: function () {
                     user_type = Session.get('user_type');
-                    return Schema[user_type].question5.schema('answers').autoform.question
+                    return Schema[user_type].question5.schema('answer5').autoform.question
                 },
                 template: 'questionForm',
                 schema: function () {
@@ -122,7 +111,7 @@ Template.question.helpers({
                     return Schema[user_type].question5;
                 },
                 onSubmit: function (data, mergedData) {
-                    console.log(mergedData.store.keys, data);
+                    Router.go('summary');
                 }
             }
         ]
@@ -145,9 +134,13 @@ var hooksObject = {
         }
     },
     onSubmit: function (doc) {
-        if (doc.answers == "pointsUser" || doc.answers == "noPointsUser") {
-            Session.set('user_type', doc.answers);
+        quiz = Session.get('quiz');
+        quiz.push({answer: doc[Object.keys(doc)[0]]});
+        Session.set('quiz', quiz);
+        if(doc.baseAnswer) {
+            Session.set('user_type', doc.baseAnswer);
         }
+
     }
 };
 

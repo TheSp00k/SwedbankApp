@@ -1,0 +1,24 @@
+<template name="summary">
+
+    <p>Ačiū už atsakymus</p>
+
+
+    {{#each question in questions}}
+        <div class="headline">
+            <h2>{{question.question}}</h2>
+        </div>
+        {{console.log quiz @index}}
+        <!--{{#each answer in quiz}}-->
+            <!--{{#if answer}}-->
+            <!--{{#if answer[0]}}-->
+                <!--{{#each string in answer}}-->
+                    <!--{{string}}-->
+                <!--{{/each}}-->
+            <!--{{else}}-->
+                <!--{{answer.answer}}-->
+            <!--{{/if}}-->
+        <!--{{/each}}-->
+    {{/each}}
+
+    <a href="/" class="ui button">Place another order</a>
+</template>

@@ -3,7 +3,6 @@ Template.question.rendered = function() {
         this._rendered = true;
         Session.set('formId', 'baseQuestion');
         Session.set('user_type', 'pointsUser');
-console.log(Session.get('user_type'));
     }
 };
 
@@ -26,6 +25,11 @@ Template.question.events({
     //    Session.set('user_type', user_type);
     //},
     'submit': function(event) {
+        formId = event.target.id;
         Session.set('formId', event.target.id);
+        question = $('form .headline h2').text();
+        questions = Session.get('questions');
+        questions.push({question: question});
+        Session.set('questions', questions);
     }
 });

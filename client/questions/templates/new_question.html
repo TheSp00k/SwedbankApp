@@ -1,36 +1,20 @@
 <template name="question">
-    {{> wizard id='wizardForm' doc=step.data steps=steps stepsTemplate='quiz_navigation' confirmButton='Baigti' nextButton='Toliau' backButton='Atgal'}}
+    {{> wizard id='wizardForm' steps=steps stepsTemplate='quiz_navigation' confirmButton='Baigti' nextButton='Toliau' backButton='Atgal'}}
 </template>
 
 <template name="questionForm">
-    {{console.log this.step}}
-    {{#autoForm schema=this.step.schema doc=step.data template="bootstrap3" id=this.step.formId}}
+    {{#autoForm schema=this.step.schema template="bootstrap3" id=this.step.formId}}
         <div class="headline">
             <h2>{{this.step.title}}</h2>
         </div>
         <fieldset>
-            {{> afQuickField name='answers'}}
+            {{> afQuickField name=this.step.formField}}
         </fieldset>
         {{>wizardButtons}}
     {{/autoForm}}
 </template>
 
 <template name="quiz_navigation">
-    <!--<div class="navigation">-->
-    <!--<div class="points-pic-container inactive">-->
-    <!--<div class="points"></div>-->
-    <!--</div>-->
-    <!--<div class="points-pic-container answered current">-->
-    <!--<div class="points"></div>-->
-    <!--</div>-->
-    <!--<div class="points-pic-container answered">-->
-    <!--<div class="points"></div>-->
-    <!--</div>-->
-    <!--<div class="points-pic-container">-->
-    <!--<div class="points"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-
     <div class="steps">
         <div class="navigation">
                 {{#each wizard.steps}}
@@ -45,11 +29,11 @@
                                 <div class="points-pic-container current">
                                     <div class="points"></div>
                                 </div>
-                                {{else}}
+                            {{else}}
                                 <div class="points-pic-container inactive">
                                     <div class="points"></div>
                                 </div>
-                                {{/if}}
+                            {{/if}}
 
                             <!--{{title}}-->
                         {{/if}}

@@ -5,10 +5,13 @@
         {{> points_explain}}
         <div class="container main-content jumbotron">
             <div class="quiz-container">
-                {{> question}}
+                {{#if summary}}
+                    {{> summary}}
+                {{else}}
+                    {{> question}}
+                {{/if}}
                 <div class="clearfix"></div>
             </div>
-            {{> questionList}}
         </div>
     </div>
 </template>

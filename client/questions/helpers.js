@@ -134,13 +134,13 @@ var hooksObject = {
         }
     },
     onSubmit: function (doc) {
+        question = this.formAttributes.schema.schema(Object.keys(doc)[0]).autoform.question;
         quiz = Session.get('quiz');
-        quiz.push({answer: doc[Object.keys(doc)[0]]});
+        quiz.push({answer: doc[Object.keys(doc)[0]], question: question});
         Session.set('quiz', quiz);
         if(doc.baseAnswer) {
             Session.set('user_type', doc.baseAnswer);
         }
-
     }
 };
 

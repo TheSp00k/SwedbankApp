@@ -3,7 +3,7 @@
 </template>
 
 <template name="questionForm">
-    {{#autoForm schema=this.step.schema template="bootstrap3" id=this.step.formId}}
+    {{#autoForm schema=this.step.schema class="form-container" id=this.step.formId}}
         <div class="headline">
             <h2>{{this.step.title}}</h2>
         </div>
@@ -17,27 +17,26 @@
 <template name="quiz_navigation">
     <div class="steps">
         <div class="navigation">
-                {{#each wizard.steps}}
-                        {{#if pathForStep id}}
-                            <a href="{{pathForStep id}}">
-                                <div class="points-pic-container answered">
-                                    <div class="points"></div>
-                                </div>
-                            </a>
-                        {{else}}
-                            {{#if activeStepClass id}}
-                                <div class="points-pic-container current">
-                                    <div class="points"></div>
-                                </div>
-                            {{else}}
-                                <div class="points-pic-container inactive">
-                                    <div class="points"></div>
-                                </div>
-                            {{/if}}
+            {{#each wizard.steps}}
+                {{#if pathForStep id}}
+                    <a href="{{pathForStep id}}">
+                        <div class="points-pic-container answered">
+                            <div class="points"></div>
+                        </div>
+                    </a>
+                {{else}}
+                    {{#if activeStepClass id}}
+                        <div class="points-pic-container current">
+                            <div class="points"></div>
+                        </div>
+                    {{else}}
+                        <div class="points-pic-container inactive">
+                            <div class="points"></div>
+                        </div>
+                    {{/if}}
 
-                            <!--{{title}}-->
-                        {{/if}}
-                {{/each}}
+                {{/if}}
+            {{/each}}
         </div>
     </div>
 </template>

@@ -1,39 +1,59 @@
 <template name="question">
-    {{#if pointsUser}}
-        {{>wizard id='pointsForm' doc=step.data steps=pointsSteps stepsTemplate=false}}
-    {{else}}
-        {{#if noPointsUser}}
-            {{> wizard id='noPointsForm' doc=step.data steps=noPointsSteps stepsTemplate=false nextButton='Toliau' backButton='Atgal'}}
-        {{else}}
-            {{#autoForm schema="Schema.baseQuestion" doc=this id="baseQuestion" type="method" meteormethod="firstQuestionAnswered"}}
-                <div class="headline">
-                    {{console.log Schema}}
-                    <h2>{{getBaseFormHeader}}</h2>
-                </div>
-                <fieldset>
-                    {{> afQuickField name='answers'}}
-                </fieldset>
-                <input id="formSubmit" type="submit" class="btn btn-primary" value="Insert"/>
-            {{/autoForm}}
-        {{/if}}
-    {{/if}}
-
-    <p>
-        // How To Show Echo Text HERE??
-        Text = ???????????????????
-        {{getVarFromSession}}
-    </p>
+    {{> wizard id='wizardForm' doc=step.data steps=steps stepsTemplate='quiz_navigation' confirmButton='Baigti' nextButton='Toliau' backButton='Atgal'}}
 </template>
 
 <template name="questionForm">
-    {{console.log step.data}}
-    {{#autoForm schema=this.step.schema doc=step.data id=this.step.formId}}
-    <div class="headline">
-        <h2>{{this.step.title}}</h2>
-    </div>
-    <fieldset>
-        {{> afQuickField name='answers'}}
-    </fieldset>
-    {{>wizardButtons}}
+    {{console.log this.step}}
+    {{#autoForm schema=this.step.schema doc=step.data template="bootstrap3" id=this.step.formId}}
+        <div class="headline">
+            <h2>{{this.step.title}}</h2>
+        </div>
+        <fieldset>
+            {{> afQuickField name='answers'}}
+        </fieldset>
+        {{>wizardButtons}}
     {{/autoForm}}
+</template>
+
+<template name="quiz_navigation">
+    <!--<div class="navigation">-->
+    <!--<div class="points-pic-container inactive">-->
+    <!--<div class="points"></div>-->
+    <!--</div>-->
+    <!--<div class="points-pic-container answered current">-->
+    <!--<div class="points"></div>-->
+    <!--</div>-->
+    <!--<div class="points-pic-container answered">-->
+    <!--<div class="points"></div>-->
+    <!--</div>-->
+    <!--<div class="points-pic-container">-->
+    <!--<div class="points"></div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div class="steps">
+        <div class="navigation">
+                {{#each wizard.steps}}
+                        {{#if pathForStep id}}
+                            <a href="{{pathForStep id}}">
+                                <div class="points-pic-container answered">
+                                    <div class="points"></div>
+                                </div>
+                            </a>
+                        {{else}}
+                            {{#if activeStepClass id}}
+                                <div class="points-pic-container current">
+                                    <div class="points"></div>
+                                </div>
+                                {{else}}
+                                <div class="points-pic-container inactive">
+                                    <div class="points"></div>
+                                </div>
+                                {{/if}}
+
+                            <!--{{title}}-->
+                        {{/if}}
+                {{/each}}
+        </div>
+    </div>
 </template>

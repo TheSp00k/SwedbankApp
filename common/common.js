@@ -2,42 +2,21 @@ Schema = {};
 Schema.baseQuestion = new SimpleSchema({
     answers: {
         type: String,
-        label: "Ar esate e-taškų kaupimo dalyvis?",
         autoform: {
-            label: false,
             type: "select-radio",
+            label: false,
+            question: 'Ar esate e-taškų kaupimo dalyvis?',
             options: function () {
                 return [
                     {
                         label: "Taip",
-                        value: 1
+                        value: "pointsUser"
                     },
                     {
                         label: "Ne",
-                        value: 0
+                        value: "noPointsUser"
                     }
                 ];
-            }
-        }
-    },
-
-    questionNr: {
-        type: String,
-        optional: true,
-        autoform: {
-            afFieldInput: {
-                type: "hidden",
-                value: "0"
-            }
-        }
-    },
-    question: {
-        type: String,
-        optional: true,
-        autoform: {
-            afFieldInput: {
-                type: "hidden",
-                value: "Ar esate e-taškų kaupimo dalyvis?"
             }
         }
     }
@@ -50,6 +29,7 @@ Schema.pointsUser = {
             autoform: {
                 type: "select-checkbox",
                 label: false,
+                question: 'Kokiems prizams išleidžiate e-taškus?',
                 options: function () {
                     return [
                         {
@@ -95,6 +75,7 @@ Schema.pointsUser = {
             autoform: {
                 type: "select-radio",
                 label: false,
+                question: 'Kiek laiko naudojatės e-taškų programa?',
                 options: function () {
                     return [
                         {
@@ -127,6 +108,7 @@ Schema.pointsUser = {
             type: String,
             autoform: {
                 type: "select-radio",
+                question: "Kaip sužinojote apie e-taškus?",
                 label: false,
                 options: function () {
                     return [
@@ -159,15 +141,16 @@ Schema.pointsUser = {
         answers: {
             type: String,
             autoform: {
+                question: "Kokios priežastys įtakojo prisijungti prie e-taškų kaupimo programos?",
                 label: false
             }
-
         }
     }),
     question5: new SimpleSchema({
         answers: {
             type: String,
             autoform: {
+                question: "Kokių prizų norėtumėte už e-taškus?",
                 label: false
             }
         }
@@ -178,8 +161,9 @@ Schema.noPointsUser = {
     question1: new SimpleSchema({
         answers: {
             type: String,
-            label: "Dėl kokių priežasčių nesinaudojate e-taškų kaupimo programa?",
             autoform: {
+                label: false,
+                question: "Dėl kokių priežasčių nesinaudojate e-taškų kaupimo programa?",
                 type: "select-radio",
                 options: function () {
                     return [
@@ -212,14 +196,62 @@ Schema.noPointsUser = {
     question2: new SimpleSchema({
         answers: {
             type: String,
-            label: "Kokie yra e-taškų programos trūkumai?"
+            autoform: {
+                label: false,
+                question: "Kokie yra e-taškų programos trūkumai?"
+            }
         }
     }),
     question3: new SimpleSchema({
         answers: {
             type: String,
-            label: "Ar galėtumėte parekomenduoti e-taškų kaupimo programą savo pažįstamiems?",
             autoform: {
+                label: false,
+                question: "Ar galėtumėte parekomenduoti e-taškų kaupimo programą savo pažįstamiems?",
+                type: "select-radio",
+                options: function () {
+                    return [
+                        {
+                            label: "Taip",
+                            value: 1
+                        },
+                        {
+                            label: "Ne",
+                            value: 0
+                        }
+                    ];
+                }
+            }
+        }
+    }),
+    question4: new SimpleSchema({
+        answers: {
+            type: String,
+            autoform: {
+                label: false,
+                question: "Ar esate dalyvavę kitose e-taškų kaupimo programose?",
+                type: "select-radio",
+                options: function () {
+                    return [
+                        {
+                            label: "Taip",
+                            value: 1
+                        },
+                        {
+                            label: "Ne",
+                            value: 0
+                        }
+                    ];
+                }
+            }
+        }
+    }),
+    question5: new SimpleSchema({
+        answers: {
+            type: String,
+            autoform: {
+                label: false,
+                question: "Ar naudojatės kitomis swedbank paslaugomis?",
                 type: "select-radio",
                 options: function () {
                     return [

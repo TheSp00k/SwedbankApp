@@ -1,3 +1,18 @@
+Template.question.rendered = function() {
+    if(!this._rendered) {
+        this._rendered = true;
+        Session.set('formId', 'baseQuestion');
+        Session.set('user_type', 'pointsUser');
+        console.log(Session.get('user_type'));
+    }
+};
+
+Template.quiz_navigation.helpers({
+    activeStepClass: function(id) {
+        var activeStep = this.wizard.activeStep();
+        return (activeStep && activeStep.id == id) && 'answered' || '';
+    }
+});
 
 Template.questionForm.helpers({
     getFormId: function () {
@@ -15,8 +30,6 @@ Template.question.helpers({
     getFormHeader: function () {
         var formId = Session.get('formId');
         var user_type = Session.get('user_type');
-        console.log(Schema[user_type]);
-        console.log(Schema[user_type][formId].schema('answers').label);
         return Schema[user_type][formId].schema('answers').label;
     },
     getVarFromSession: function () {
@@ -32,66 +45,84 @@ Template.question.helpers({
     getQuestionsCount: function () {
         //return Session.get('questions');
     },
-    pointsSteps: function() {
+    steps: function () {
         return [
+            {
+                id: 'baseQuestion',
+                formId: 'baseQuestion',
+                title: function () {
+                    return Schema.baseQuestion.schema('answers').autoform.question
+                },
+                template: 'questionForm',
+                schema: Schema.baseQuestion
+            },
             {
                 id: 'question1',
                 formId: 'question1',
-                title: 'Kokiems prizams išleidžiate e-taškus?',
+                title: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question1.schema('answers').autoform.question
+                },
                 template: 'questionForm',
-                schema: Schema.pointsUser.question1
+                schema: function () {
+                    user_type = Session.get('user_type');
+                    console.log(user_type);
+                    return Schema[user_type].question1;
+                }
             },
             {
                 id: 'question2',
                 formId: 'question2',
+                title: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question2.schema('answers').autoform.question
+                },
                 template: 'questionForm',
-                title: 'Kiek laiko naudojatės e-taškų programa?',
-                schema: Schema.pointsUser.question2
+                schema: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question2;
+                }
             },
             {
                 id: 'question3',
                 formId: 'question3',
+                title: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question3.schema('answers').autoform.question
+                },
                 template: 'questionForm',
-                title: 'Kaip sužinojote apie e-taškus?',
-                schema: Schema.pointsUser.question3
+                schema: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question3;
+                }
             },
             {
                 id: 'question4',
                 formId: 'question4',
+                title: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question4.schema('answers').autoform.question
+                },
                 template: 'questionForm',
-                title: 'Kokios priežastys įtakojo pradėti prisijungti prie e-taškų kaupimo programos?',
-                schema: Schema.pointsUser.question4
+                schema: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question4;
+                }
             },
             {
                 id: 'question5',
                 formId: 'question5',
+                title: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question5.schema('answers').autoform.question
+                },
                 template: 'questionForm',
-                title: 'Kokių prizų norėtumėte už e-taškus?',
-                schema: Schema.pointsUser.question5,
-                onSubmit: function(data, mergedData) {
-                    console.log(mergedData.store.keys);
-                }
-            }
-        ]
-    },
-    noPointsSteps: function () {
-        return [
-            {
-                id: 'question1',
-                formId: 'question1',
-                schema: Schema.noPointsUser.question1
-            },
-            {
-                id: 'question2',
-                formId: 'question2',
-                schema: Schema.noPointsUser.question2
-            },
-            {
-                id: 'question3',
-                formId: 'question3',
-                schema: Schema.noPointsUser.question3,
-                onSubmit: function(data, mergedData) {
-                    console.log(mergedData.store.keys);
+                schema: function () {
+                    user_type = Session.get('user_type');
+                    return Schema[user_type].question5;
+                },
+                onSubmit: function (data, mergedData) {
+                    console.log(mergedData.store.keys, data);
                 }
             }
         ]
@@ -99,46 +130,25 @@ Template.question.helpers({
 });
 
 var hooksObject = {
-    beginSubmit: function() {
+    beginSubmit: function () {
         this.event.preventDefault();
         var submitButton = this.template.find("button[type=submit]") || this.template.find("input[type=submit]");
         if (submitButton) {
             submitButton.disabled = false;
         }
     },
-    endSubmit: function() {
+    endSubmit: function () {
         this.event.preventDefault();
         var submitButton = this.template.find("button[type=submit]") || this.template.find("input[type=submit]");
         if (submitButton) {
             submitButton.disabled = false;
         }
+    },
+    onSubmit: function (doc) {
+        if (doc.answers == "pointsUser" || doc.answers == "noPointsUser") {
+            Session.set('user_type', doc.answers);
+        }
     }
 };
-AutoForm.addHooks(['question1', 'question2', 'question3', 'question4', 'question5'], hooksObject);
 
-//AutoForm.hooks({
-//    'question1': {
-//        after: {
-//            method: function (error, answer) {
-//                console.log('asdasdadad');
-//                if (answer) {
-//                    Session.set('answer', answer);
-//                }
-//            }
-//        },
-//        endSubmit: function() {
-//            console.log('qweqwe');
-//            var submitButton = template.find("button[type=submit]") || template.find("input[type=submit]");
-//            if (submitButton) {
-//                submitButton.disabled = false;
-//            }
-//        }
-//    }
-//});
-
-//var quizForm = new AutoForm(Schema.echoSchema);
-//Template.newQuestion.helpers({
-//    questionForm: function() {
-//        return quizForm;
-//    }
-//});
+AutoForm.addHooks(null, hooksObject);

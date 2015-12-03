@@ -3,18 +3,22 @@ Template.question.rendered = function() {
         this._rendered = true;
         Session.set('formId', 'baseQuestion');
         Session.set('user_type', 'pointsUser');
-        $('input[type=radio]:checked, input[type=checkbox]:checked').parentNode.addClass('checked');
+        Session.set('quiz', []);
+        Session.set('questions', []);
     }
 };
 
 Template.quiz_navigation.events({
     'click a': function(e, tpl) {
-        console.log(this.wizard);
         if (!this.wizard.route) {
             e.preventDefault();
+            var stepsByIndex = this.wizard._stepsByIndex;
+            var currentStepIndex = stepsByIndex.indexOf(this.id);
+            var totalSteps = stepsByIndex.length;
             this.wizard.show(this.id);
             quiz = Session.get('quiz');
-            console.log(quiz);
+            quiz.splice(currentStepIndex, totalSteps);
+            Session.set('quiz', quiz);
         }
     }
 });
@@ -25,21 +29,10 @@ Template.wizardButtons.events({
         quiz = Session.get('quiz');
         quiz.pop();
         Session.set('quiz', quiz);
-        console.log(Session.get('quiz'));
-        console.log(this.activeStep(false).formField);
-
     }
 });
 
 Template.question.events({
-    //'submit #baseQuestion': function(event) {
-    //    if (event.target.answers.value == 1) {
-    //        user_type = "pointsUser";
-    //    } else if(event.target.answers.value == 0) {
-    //        user_type = "noPointsUser";
-    //    }
-    //    Session.set('user_type', user_type);
-    //},
     'submit': function(event) {
         formId = event.target.id;
         Session.set('formId', event.target.id);
@@ -57,5 +50,11 @@ Template.question.events({
         } else {
             $(event.target.parentNode).removeClass('checked');
         }
+    }
+});
+
+Template.summary.events({
+    'click #repeat-quiz': function() {
+        Router.go('/');
     }
 });

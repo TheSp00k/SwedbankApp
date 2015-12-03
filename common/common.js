@@ -69,8 +69,19 @@ Schema.pointsUser = {
             }
         }
     }),
+
     question2: new SimpleSchema({
         answer2: {
+            type: String,
+            autoform: {
+                question: "Kokių papildomų prizų norėtumėte už e-taškus?",
+                label: false
+            }
+        }
+    }),
+
+    question3: new SimpleSchema({
+        answer3: {
             type: String,
             autoform: {
                 type: "select-radio",
@@ -103,8 +114,8 @@ Schema.pointsUser = {
             }
         }
     }),
-    question3: new SimpleSchema({
-        answer3: {
+    question4: new SimpleSchema({
+        answer4: {
             type: String,
             autoform: {
                 type: "select-radio",
@@ -137,20 +148,11 @@ Schema.pointsUser = {
             }
         }
     }),
-    question4: new SimpleSchema({
-        answer4: {
-            type: String,
-            autoform: {
-                question: "Kokios priežastys įtakojo prisijungti prie e-taškų kaupimo programos?",
-                label: false
-            }
-        }
-    }),
     question5: new SimpleSchema({
         answer5: {
             type: String,
             autoform: {
-                question: "Kokių prizų norėtumėte už e-taškus?",
+                question: "Kokios priežastys įtakojo prisijungti prie e-taškų kaupimo programos?",
                 label: false
             }
         }
@@ -273,5 +275,3 @@ Schema.noPointsUser = {
 SimpleSchema.messages({
     required: "Jūs neatsakėte į klausimą"
 });
-
-//https://github.com/forwarder/meteor-wizard

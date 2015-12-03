@@ -1,14 +1,30 @@
 <template name="summary">
-
     <div class="form-container">
-        <p>Ačiū už atsakymus</p>
-        {{#each item in quiz}}
-            <div class="headline">
-                <h2>{{item.question}}</h2>
-            </div>
-            <div>
-                {{item.answer}}
-            </div>
-        {{/each}}
+        <div class="headline">
+            <h1>Ačiū už atsakymus</h1>
+        </div>
+        <div class="answers-content">
+            {{#each item in quiz}}
+                <div class="answer-container">
+                    <div class="headline">
+                        <h2>{{item.question}}</h2>
+                    </div>
+                    <div class="answer">
+                        {{#if isArray item.answer}}
+                            <ul>
+                                {{#each item.answer}}
+                                    <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            <div class="single-answer">{{item.answer}}</div>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <div class="wizard-nav">
+            <button id="repeat-quiz">Pakartoti apklausą</button>
+        </div>
     </div>
 </template>

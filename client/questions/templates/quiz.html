@@ -25,16 +25,9 @@
                         </div>
                     </a>
                 {{else}}
-                    {{#if activeStepClass id}}
-                        <div class="points-pic-container current">
-                            <div class="points"></div>
-                        </div>
-                    {{else}}
-                        <div class="points-pic-container inactive">
-                            <div class="points"></div>
-                        </div>
-                    {{/if}}
-
+                    <div class="points-pic-container{{#if activeStepClass id}} current {{else}} inactive {{/if}}">
+                        <div class="points"></div>
+                    </div>
                 {{/if}}
             {{/each}}
         </div>
